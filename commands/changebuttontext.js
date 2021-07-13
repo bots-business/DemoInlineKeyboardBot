@@ -1,24 +1,23 @@
 /*CMD
-  command: changebuttontext
+  command: changeButtonText
   help: 
   need_reply: true
   auto_retry_time: 
-  answer: 
+  folder: 
+  answer: Please input new text
   keyboard: 
   aliases: 
 CMD*/
 
-message_id = Bot.getProperty("LastMessageID");
-newTitle = message;
-var buttons = [
-    {title: "Go to Google", url: "https://google.com"},
-    {title: "delete this button", command: "touchButton delete" },
-    {title: "set text for this button", command: "touchButton setText" },
-    {title: newTitle, command: "touchButton3" },
-]
+var message_id = User.getProperty("message_for_editing");
+
+var newTitle = message;
+
+editKeyboardButtonTitle(newTitle, "customBtn")
+
 if(message_id){
-  Bot.editInlineKeyboard(buttons, message_id);
+  Bot.editInlineKeyboard(defaultKeyboard, message_id);
   Bot.sendMessage("Done")
 }else{
-  Bot.sendMessage("Not worked. Try agan later");
+  Bot.sendMessage("Not worked. Try again later");
 }
